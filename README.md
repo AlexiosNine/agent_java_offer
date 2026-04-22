@@ -5,13 +5,7 @@
 
 ## 这份仓库适合谁
 
-- 准备 后端、系统设计、算法面试的人
 - 正在从  后端转向 AI Agent / 大模型应用工程的人
-
-## 转agent的一些建议
-1.有个开源学习项目, 很适合从0-1入门agent: https://github.com/datawhalechina/Hello-Agents
-2.平时多看论坛帖子(Twitter等), 了解AI圈最新进展, 自己上手多试多实践; 然后践行费曼学习法, 多总结整理输出; 因为agent发展很快, 面试官会问最新的agent技术或项目
-3.要结合ai-coding做一个自己的agent项目, 可以展示你对agent理解以及ai-coding的能力. 这个也基本是必须的
 
 ## 如何使用
 
@@ -32,7 +26,7 @@
 
 ### 01_AI
 
-适合准备 Agent、RAG、上下文工程、评测、安全、工程化相关面试。
+适合准备 Agent、RAG、上下文工程、skill、subagent、评测、安全、工程化相关面试。
 
 - [01_Agent基础](docs/interview_prep/01_AI/01_Agent基础/01_核心问答.md)
 - [02_Workflow与多Agent](docs/interview_prep/01_AI/02_Workflow与多Agent/01_核心问答.md)
@@ -42,6 +36,7 @@
 - [06_评测与监控](docs/interview_prep/01_AI/06_评测与监控/01_核心问答.md)
 - [07_安全与风控](docs/interview_prep/01_AI/07_安全与风控/01_核心问答.md)
 - [08_框架协议与工程化](docs/interview_prep/01_AI/08_框架协议与工程化/01_核心问答.md)
+- [09_追加补充](docs/interview_prep/01_AI/09_追加补充/01_核心问答.md)
 
 ### 02_后端
 
@@ -96,7 +91,6 @@
 - [05_大模型应用平台](docs/interview_prep/05_项目表达/05_大模型应用平台/01_核心问答.md)
 - [06_AIGC内容平台](docs/interview_prep/05_项目表达/06_AIGC内容平台/01_核心问答.md)
 - [07_综合场景题](docs/interview_prep/05_项目表达/07_综合场景题/01_核心问答.md)
-
 
 ## 推荐复习顺序
 
