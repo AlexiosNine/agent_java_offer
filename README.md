@@ -129,3 +129,11 @@
 - 不允许直接用于商业化分发、售卖或训练营资料包装
 
 如果后续仓库中新增独立代码目录，以该目录内的单独声明为准。
+
+## 友情链接
+
+- [LINUX DO](https://linux.do) — 新的理想型社区
+
+<p align="center">
+  <a href="https://linux.do" alt="LINUX DO"><img src="https://shorturl.at/ggSqS" /></a>
+</p>
