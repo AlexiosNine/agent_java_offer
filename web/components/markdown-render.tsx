@@ -4,7 +4,7 @@ import remarkGfm from 'remark-gfm'
 
 export function MarkdownRender({ content }: { content: string }) {
   return (
-    <div className="prose prose-neutral dark:prose-invert max-w-none">
+    <div className="markdown-content max-w-none">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeHighlight]}

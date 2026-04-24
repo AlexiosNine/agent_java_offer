@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  lightrag:
+    image: lightrag:latest  # 假设你已有 LightRAG 镜像
+    container_name: lightrag
+    ports:
+      - "9621:9621"
+    volumes:
+      - ./docs/interview_prep:/app/docs
+    environment:
+      - LIGHTRAG_PORT=9621
+    networks:
+      - agent-offer-network
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: agent-offer-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_LIGHTRAG_URL=http://lightrag:9621
+    depends_on:
+      - lightrag
+    networks:
+      - agent-offer-network
+    restart: unless-stopped
+
+networks:
+  agent-offer-network:
+    driver: bridge

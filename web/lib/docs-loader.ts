@@ -2,7 +2,10 @@ import fs from 'fs'
 import path from 'path'
 import { DocNode, NavTree } from './types'
 
-const DOCS_ROOT = path.join(process.cwd(), '..', 'docs', 'interview_prep')
+// Use absolute path resolution from project root
+// This file is at: web/lib/docs-loader.ts
+// We need to go: web/lib -> web -> project_root -> docs/interview_prep
+const DOCS_ROOT = path.resolve(process.cwd(), '..', 'docs', 'interview_prep')
 
 function extractTitle(dirName: string): string {
   return dirName.replace(/^\d+_/, '')
@@ -57,7 +60,10 @@ export function getAllDocSlugs(): string[][] {
 }
 
 export function getDocContent(slugParts: string[]): string {
-  const filePath = path.join(DOCS_ROOT, ...slugParts, '01_核心问答.md')
+  // Decode URL-encoded slug parts (e.g., %E7%B3%BB%E7%BB%9F -> 系统)
+  const decodedParts = slugParts.map(part => decodeURIComponent(part))
+  const filePath = path.join(DOCS_ROOT, ...decodedParts, '01_核心问答.md')
+
   if (!fs.existsSync(filePath)) {
     return '# 内容未找到'
   }
@@ -65,6 +71,6 @@ export function getDocContent(slugParts: string[]): string {
 }
 
 export function getDocTitle(slugParts: string[]): string {
-  const last = slugParts[slugParts.length - 1]
+  const last = decodeURIComponent(slugParts[slugParts.length - 1])
   return extractTitle(last)
 }

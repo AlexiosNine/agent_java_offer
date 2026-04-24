@@ -1,0 +1,11 @@
+# RAG Pipeline 依赖
+
+# 向量数据库
+chromadb>=0.4.0
+
+# Embedding 模型（可选，也可以用 OpenAI）
+# sentence-transformers>=2.2.0
+
+# 文档处理
+# pypdf>=3.0.0
+# python-docx>=0.8.11

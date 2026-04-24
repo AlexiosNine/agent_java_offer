@@ -14,4 +14,4 @@ export const DIFFICULTIES: { value: Difficulty; label: string; description: stri
   { value: 'comprehensive', label: '综合', description: '跨主题追问和场景题' },
 ]
 
-export const LIGHTRAG_URL = process.env.NEXT_PUBLIC_LIGHTRAG_URL || 'http://localhost:8020'
+export const LIGHTRAG_URL = process.env.NEXT_PUBLIC_LIGHTRAG_URL || 'http://localhost:9621'

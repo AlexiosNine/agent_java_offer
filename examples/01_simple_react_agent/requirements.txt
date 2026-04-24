@@ -1,0 +1,9 @@
+# 最简 ReAct Agent 依赖
+# 实际使用时需要添加 LLM API 依赖
+
+# 如果使用 OpenAI
+# openai>=1.0.0
+
+# 如果使用其他 LLM
+# anthropic>=0.18.0
+# langchain>=0.1.0
