@@ -1,20 +1,27 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ChatPanel } from '@/components/chat-panel'
 import { InterviewSetup } from '@/components/interview-setup'
 import { queryInterview } from '@/lib/lightrag'
 import { useChatStore } from '@/lib/chat-store'
 import { Direction, Difficulty, ChatMessage } from '@/lib/types'
-import { DIRECTIONS, DIFFICULTIES } from '@/lib/constants'
+import { DIRECTIONS, DIFFICULTIES, LIGHTRAG_URL } from '@/lib/constants'
 import { Button } from '@/components/ui/button'
 
 export default function InterviewPage() {
   const [started, setStarted] = useState(false)
   const [direction, setDirection] = useState<Direction>('01_AI')
   const [difficulty, setDifficulty] = useState<Difficulty>('basic')
+  const [backendAvailable, setBackendAvailable] = useState<boolean | null>(null)
   const clearMessages = useChatStore((s) => s.clearMessages)
   const addMessage = useChatStore((s) => s.addMessage)
+
+  useEffect(() => {
+    fetch(`${LIGHTRAG_URL}/health`, { signal: AbortSignal.timeout(3000) })
+      .then(() => setBackendAvailable(true))
+      .catch(() => setBackendAvailable(false))
+  }, [])
 
   function handleStart(dir: Direction, diff: Difficulty) {
     setDirection(dir)
@@ -46,6 +53,18 @@ export default function InterviewPage() {
   function handleEnd() {
     setStarted(false)
     clearMessages()
+  }
+
+  if (backendAvailable === false) {
+    return (
+      <div className="max-w-2xl mx-auto px-8 py-16 text-center">
+        <h2 className="text-xl font-bold mb-4">模拟面试需要后端服务</h2>
+        <p className="text-muted-foreground">
+          此功能依赖 LightRAG 后端，静态部署版本暂不支持。
+          请在本地启动后端服务后使用。
+        </p>
+      </div>
+    )
   }
 
   if (!started) {
