@@ -21,19 +21,19 @@ const features = [
 
 export default function HomePage() {
   return (
-    <div className="max-w-3xl mx-auto px-8 py-16">
-      <h1 className="text-3xl font-bold mb-2">Agent Offer</h1>
-      <p className="text-muted-foreground mb-10">
+    <div className="max-w-3xl mx-auto px-4 sm:px-8 py-8 sm:py-16">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-2">Agent Offer</h1>
+      <p className="text-sm sm:text-base text-muted-foreground mb-8 sm:mb-10">
         后端转 AI Agent 面试资料库
       </p>
 
-      <div className="grid gap-4">
+      <div className="grid gap-3 sm:gap-4">
         {features.map((f) => (
           <Link key={f.href} href={f.href}>
             <Card className="hover:bg-accent transition-colors cursor-pointer">
-              <CardHeader>
-                <CardTitle>{f.title}</CardTitle>
-                <CardDescription>{f.description}</CardDescription>
+              <CardHeader className="p-4 sm:p-6">
+                <CardTitle className="text-lg sm:text-xl">{f.title}</CardTitle>
+                <CardDescription className="text-sm">{f.description}</CardDescription>
               </CardHeader>
             </Card>
           </Link>

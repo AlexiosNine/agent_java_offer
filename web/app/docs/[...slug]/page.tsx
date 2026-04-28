@@ -18,9 +18,9 @@ export default async function DocPage({ params }: { params: Promise<{ slug: stri
   return (
     <div className="flex">
       <NavTree tree={navTree.directions} />
-      <div className="flex-1 overflow-auto">
-        <article className="max-w-4xl mx-auto px-8 py-6">
-          <h1 className="text-2xl font-bold mb-6">{title}</h1>
+      <div className="flex-1 overflow-auto min-w-0">
+        <article className="max-w-4xl mx-auto px-4 sm:px-8 py-4 sm:py-6">
+          <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">{title}</h1>
           <MarkdownRender content={content} />
           <div className="mt-8 pt-4 border-t">
             <ReadToggle slug={slugStr} />

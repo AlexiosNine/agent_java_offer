@@ -57,9 +57,9 @@ export default function InterviewPage() {
 
   if (backendAvailable === false) {
     return (
-      <div className="max-w-2xl mx-auto px-8 py-16 text-center">
-        <h2 className="text-xl font-bold mb-4">模拟面试需要后端服务</h2>
-        <p className="text-muted-foreground">
+      <div className="max-w-2xl mx-auto px-4 sm:px-8 py-8 sm:py-16 text-center">
+        <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">模拟面试需要后端服务</h2>
+        <p className="text-sm sm:text-base text-muted-foreground">
           此功能依赖 LightRAG 后端，静态部署版本暂不支持。
           请在本地启动后端服务后使用。
         </p>
