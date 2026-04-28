@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { DocNode } from '@/lib/types'
@@ -69,12 +69,50 @@ function NavTreeContent({ tree }: { tree: DocNode[] }) {
 }
 
 export function NavTree({ tree }: { tree: DocNode[] }) {
+  const [isCollapsed, setIsCollapsed] = useState(false)
+
+  // Load saved preference from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem('nav-tree-collapsed')
+    if (saved !== null) {
+      setIsCollapsed(saved === 'true')
+    }
+  }, [])
+
+  // Save preference to localStorage
+  const toggleCollapse = () => {
+    const newState = !isCollapsed
+    setIsCollapsed(newState)
+    localStorage.setItem('nav-tree-collapsed', String(newState))
+  }
+
   return (
     <>
-      {/* Desktop sidebar */}
-      <ScrollArea className="hidden md:block h-[calc(100vh-3.5rem)] w-64 border-r shrink-0">
-        <NavTreeContent tree={tree} />
-      </ScrollArea>
+      {/* Desktop sidebar with collapse */}
+      <div className={`hidden md:block border-r shrink-0 transition-all duration-300 ${isCollapsed ? 'w-0' : 'w-64'}`}>
+        {!isCollapsed && (
+          <ScrollArea className="h-[calc(100vh-3.5rem)]">
+            <NavTreeContent tree={tree} />
+          </ScrollArea>
+        )}
+      </div>
+
+      {/* Desktop collapse toggle button */}
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={toggleCollapse}
+        className="hidden md:flex fixed left-2 top-16 z-30 h-8 w-8 p-0 rounded-full shadow-md bg-background border"
+        title={isCollapsed ? '展开目录' : '收起目录'}
+      >
+        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {isCollapsed ? (
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          ) : (
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          )}
+        </svg>
+      </Button>
 
       {/* Mobile floating button + drawer */}
       <div className="md:hidden fixed bottom-4 left-4 z-40">
